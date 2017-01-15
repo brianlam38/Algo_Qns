@@ -56,6 +56,8 @@ void reverseArray(int array[]) {
 //	  Each string comparison takes O(S). There are O(ALogA) comparisons.
 // 3. Combining both together and simplifying = O(A*S(LogA + LogS))
 
+
+
 // What is the runtime of the below code?
 // The function sums the values of all the
 // nodes in a balanced binary search tree.
@@ -68,6 +70,43 @@ int sum(Node node) {							// Runtime = O(N)
 // Runtime of a recursive function = O(branches^depth)
 // In a Balanced Binary Search Tree, if there
 // are N total nodes then depth is roughly LogN
+
+
+
+
+// What is the runtime of the below code?
+// Checks if a number n is prime or not.
+boolean isPrime(int n) {					// Runtime = O(sqrt(N))
+	for (int x = 2; x * x <= n; x++) {
+		if (n % x == 0) {					// Loop starts when x = 2
+			return FALSE;					// Loop ends when x = sqrt(N)
+		}									// If statement = constant
+	}
+	return TRUE;
+}
+
+// What is the runtime of the below code?
+// The code computes N! (N factorial)
+int factorial(int n) {					// Runtime = O(N)
+	if (n < 0) {
+		return -1;						// Recursion from N -> N-1 -> N-2 ... 1
+	} else if (n == 0) {
+		return 1;
+	} else {
+		return n *factorial(n - 1)
+	}
+}
+
+// What is the runtime of the below code?
+// The code prints all permutations of a string
+
+
+
+
+
+
+
+
 
 
 
