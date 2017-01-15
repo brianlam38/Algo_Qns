@@ -99,6 +99,36 @@ int factorial(int n) {					// Runtime = O(N)
 
 // What is the runtime of the below code?
 // The code prints all permutations of a string
+void permutation(String str, String prefix) {		// Runtime = O(N!)
+	if (str.length() == 0) { // empty string
+		System.out.println(prefix);
+	} else {
+		for (int i = 0; i < str.length(); i++) {
+			String rem = str.substring(0, i) + str.substring(i + 1); //
+			permutation(rem, prefix + str.charAt(i));
+		}
+	}
+}
+// String Permutation examples
+a b c = 1	3 letters = 6 permutations
+a c b = 2	4 letters = 24 permutations
+b a c = 3	SAME AS FACTORIAL
+b c a = 4
+c a b = 5
+c b a = 6
+
+a b c d
+a b d c
+a c d b
+a c b d
+a d b c
+a d c b
+etc...
+
+// In the first permutation, we have N chars in STR and it makes N recursive calls
+// Next level, we have N-1 chars in STR and it makes N-1 recursive calls.
+// Then N-3, N-4 so on...
+// TOTAL = N * (N-1) * (N-2) * ... * 1 = N! calls --> O(N!) runtime
 
 
 
