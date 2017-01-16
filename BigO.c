@@ -231,7 +231,7 @@ int powersOf2(int n) {						// Runtime = O(nLogn)
 // #############################
 // ADDITIONAL BIG O PROBLEM SETS
 // #############################
-
+------------------------------------------------------------------------------------
 // 1. The following code computes the product of a and b. What is its runtime?
 int product(int a, int b) {
 	int sum = 0;
@@ -243,6 +243,7 @@ int product(int a, int b) {
 // Runtime = O(n)
 // Reason: A is added to itself B constant times
 
+------------------------------------------------------------------------------------
 // 2. The following code computes a^b. What is its runtime?
 int power(int a, int b) {
 	if (b < 0) {
@@ -255,6 +256,7 @@ int power(int a, int b) {
 }
 // Runtime = O(n)   --> Not sure why???
 
+------------------------------------------------------------------------------------
 // 3.The following code computes a % b. What is its runtime?
 int mod(int a, int b) {
 	if (b <= 0) {
@@ -263,6 +265,24 @@ int mod(int a, int b) {
 	int div = a / b;
 	return a - div * b;
 }
+// Runtime = O(1)	--> Just one iteration for the function
+// Code seems incorrect above. Always will return 0???
+
+------------------------------------------------------------------------------------
+// 4. The following code performs integer division.
+//    What is its runtime (assume a and b are both +ve)?
+int div(int a, int b) {
+	int count = 0;
+	int sum = 0;
+	while (sum <= a) {
+		sum+= b;
+		count++;
+	}
+	return count;
+}
+// Runtime = O(n)	--> Iterates from b to a
+
+------------------------------------------------------------------------------------
 
 
 
