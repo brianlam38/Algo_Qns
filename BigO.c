@@ -56,7 +56,9 @@ void reverseArray(int array[]) {
 //	  Each string comparison takes O(S). There are O(ALogA) comparisons.
 // 3. Combining both together and simplifying = O(A*S(LogA + LogS))
 
-
+// ###########################
+// BALANCED BINARY SEARCH TREE
+// ###########################
 
 // What is the runtime of the below code?
 // The function sums the values of all the
@@ -72,7 +74,9 @@ int sum(Node node) {							// Runtime = O(N)
 // are N total nodes then depth is roughly LogN
 
 
-
+// #############
+// PRIME NUMBERS
+// #############
 
 // What is the runtime of the below code?
 // Checks if a number n is prime or not.
@@ -85,6 +89,10 @@ boolean isPrime(int n) {					// Runtime = O(sqrt(N))
 	return TRUE;
 }
 
+// ###########
+// N FACTORIAL
+// ###########
+
 // What is the runtime of the below code?
 // The code computes N! (N factorial)
 int factorial(int n) {					// Runtime = O(N)
@@ -96,6 +104,10 @@ int factorial(int n) {					// Runtime = O(N)
 		return n *factorial(n - 1)
 	}
 }
+
+// ###################
+// STRING PERMUTATIONS
+// ###################
 
 // What is the runtime of the below code?
 // The code prints all permutations of a string
@@ -129,6 +141,136 @@ etc...
 // Next level, we have N-1 chars in STR and it makes N-1 recursive calls.
 // Then N-3, N-4 so on...
 // TOTAL = N * (N-1) * (N-2) * ... * 1 = N! calls --> O(N!) runtime
+
+// #########
+// FIBONACCI
+// #########
+
+// What is the runtime of the below code?
+// The O(branches^depth) pattern for recursive calls apply to this
+int fib(int n) {							// Runtime = O(2^n) --> Possible to get O(1.6^N)
+	if (n <= 0) return 0;
+	else if (n == 1) return 1;
+	return fib(n - 1) + fib(n - 2);	// multiple recursive calls
+}
+// If branches = 2 per call + we can go as deep as N, therefore O(2^n)
+// Generally, when there is an algorithm with multiple
+// recursive calls, runtime will be exponential.
+
+
+// What is the runtime of the below code?
+// Code prints all Fibonacci numbers from 0 to n.
+void allFib(int n) {							// Runtime = O(2^n)
+	for (int i = 0; i < n; i++) {				// 2^1 + 2^2 + ... + 2^n = 2^n+1
+		System.out.println(i + ": " + fib(i));	// Same time complexity as above example
+	}
+}
+
+int fib(int n) {
+	if (n <= 0) return 0;
+	else if (n == 1) return 1;
+	return fib(n - 1) + fib(n - 2);
+}
+
+
+// What is the runtime of the below code?
+// Prints all Fibonacci numbers from 0 to n.
+// However, it stores previously computed values in an integer array.
+void allFib(int n) {									// Runtime = O(n)
+	int memo[] = new int[n + 1];						// At each call to fib(i), we have already computed and stored
+	for (int i = 0; i < n; i++) {						// values for fib(i-1) and fib(i-2). We just look up values
+		System.out.println(i + ": " + fib(i, memo));
+	}
+}
+
+int fib(int n, int memop[]) {
+	if (n <= 0) return 0;
+	else if (n == 1) return 1;
+	else if (memo[n] > 0) return memo[n];
+
+	memo[n] = fib(n - 1, memo) + fib(n - 2, memo);
+	return memo[n];
+}
+// MEMOIZATION: An optimisation technique by storing results of expensive function calls
+///             and returning cached results when the same input occurs again.
+// At each call to fib(i), we have already computed and stored values for fib(i-1) and fib(i-2).
+// We just look up values, sum them, store the new result and return.
+// This takes a constant amount of time.
+// EXAMPLE:
+fib(1) -> return 1
+fib(2)
+	fib(1) -> return 1
+	fib(0) -> return 0
+	store 1 at memo[2]
+fib(3)
+	fib(2) -> lookup memo[2] -> return 1
+	fib(1) -> return 1
+	store 2 at memo[3]
+fib(4)
+	fib(3) -> lookup memo[2] -> return 1
+	fib(2) -> lookup memo[3] -> return 2
+	store 3 at memo[4]
+...
+
+// ################################################################################
+
+// What is the runtime of the below code?
+// The function prints powers of 2 up to n.
+int powersOf2(int n) {						// Runtime = O(nLogn)
+	if (n == 1) {
+		System.out.println(1);				// The runtime is the number of times we can
+		return 1;							// halve n until we get to the base case (1)
+	} else {								// This will take nlogn function calls.
+		int prev = powersOf2(n / 2);
+		int curr = prev * 2;
+		System.out.println(curr);
+		return curr;
+	}
+}
+
+// #############################
+// ADDITIONAL BIG O PROBLEM SETS
+// #############################
+
+// 1. The following code computes the product of a and b. What is its runtime?
+int product(int a, int b) {
+	int sum = 0;
+	for (int i = 0; i < b: i++) {
+		sum += a;
+	}
+	return sum;
+}
+// Runtime = O(n)
+// Reason: A is added to itself B constant times
+
+// 2. The following code computes a^b. What is its runtime?
+int power(int a, int b) {
+	if (b < 0) {
+		return 0; // error
+	} else if (b == 0) {
+		return 1;
+	} else {
+		return a * power(a, b - 1);
+	}
+}
+// Runtime = O(n)   --> Not sure why???
+
+// 3.The following code computes a % b. What is its runtime?
+int mod(int a, int b) {
+	if (b <= 0) {
+		return -1;
+	}
+	int div = a / b;
+	return a - div * b;
+}
+
+
+
+
+
+
+
+
 
 
 
