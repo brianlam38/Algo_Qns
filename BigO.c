@@ -280,10 +280,10 @@ int div(int a, int b) {
 	}
 	return count;
 }
-// Runtime = O(n)	--> Iterates from b to a
+// Runtime = O(n)	--> Iterates n times, adding b into a until div counter is reached
 
 ------------------------------------------------------------------------------------
-
+// 5.
 
 
 
