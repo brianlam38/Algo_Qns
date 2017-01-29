@@ -283,7 +283,61 @@ int div(int a, int b) {
 // Runtime = O(n)	--> Iterates n times, adding b into a until div counter is reached
 
 ------------------------------------------------------------------------------------
-// 5.
+// 5. The following code computes the integer square root of a number. If the number
+//	  is not a perfect square (no integer square root), then it returns -1. It does this
+//	  by successive guessing.
+int sqrt(int n) {
+	return sqrt_helper(n, 1, n);
+}
+
+int sqrt_helper(int n, int min, int max) {
+	if (max < min) return -1; // no square root
+
+	int guess = (min + max) / 2;  // halving operation
+	if (guess * guess == n) {	// square root is found
+		return guess;
+	} else if (guess * guess < n) {	// too low
+		return sqrt_helper(n, guess + 1, max);	// test higher
+	} else {
+		return sqrt_helper(n, 1, guess - 1);	// try lower
+	}
+}
+// This is a recursive function with two branches --> O(nlogn) 
+------------------------------------------------------------------------------------
+// 6. Same problem as above, except it finds the square root by testing increasingly
+//	  large numbers until it finds the right value (or it is too high).
+int sqrt(int n) {
+	for (int guess = 1; guess * guess <= n; guess++) {
+		if (guess * guess == n) {
+			return guess;
+		}
+	}
+	return -1;
+}
+// Iterate through 1 to n -- >O(n)
+------------------------------------------------------------------------------------
+// 7. If a binary search tree is not balanced, how long might it take (worst case)
+//	  to find an element in it?
+Worst case = O(n) / searching through all nodes in the tree
+The max time to find an element = the depth of the tree. The tree could be
+a straight list downwards and have depth n.
+------------------------------------------------------------------------------------
+// 8. You are looking for a specific value in a binary tree, but the tree is not a
+//	  binary search tree. What is the time complexity of this?
+O(n). Without any ordering property on the nodes e.g. binary SEARCH tree, we might
+have to search through all the nodes.
+------------------------------------------------------------------------------------
+// 9. The appendToNew method appends a value to an array by creating a new, longer array
+//	  and returning this longer array.
+int copyArray(int[] array) {
+	int[] copy = new int[0];
+	for (int value : array) {
+		copy = appendToNew(copy, value);
+	}
+	return copy;
+}
+
+
 
 
 
