@@ -337,7 +337,66 @@ int copyArray(int[] array) {
 	return copy;
 }
 
+int appendToNew(int[] array, int value) {
+	// copy all elements over to new array
+	int[] bigger = new int[array.length + 1];
+	for (int i = 0; i < array.length; i++) {
+		bigger[i] = array[i];
+	}
 
+	// add new element
+	bigger[bigger.length - 1] = value;
+	return bigger;
+}
+// O(n^2) runtime. For each value, the function re-creates a whole new array to insert.
+// appendToNew() is called n times, for each value that needs to be appended to the array.
+------------------------------------------------------------------------------------
+// 10. The following code sums the digits in a number.
+int sumDigits(int n) {
+	int sum = 0;
+	while (n > 0) {
+		sum += n % 10;
+		n /= 10;
+	}
+	return sum;
+}
+// O(1)
+------------------------------------------------------------------------------------
+// 11. The following code prints all strings of length k where the characters are in sorted order.
+//     It does this by generating all strings of length k and then checking if each is sorted.
+int numChars = 26;
+
+void printSortedStrings(int remaining) {
+	printSortedStrings(remaining, "");
+}
+
+void printSortedStrings(int remaining, String prefix) {
+	if (remaining == 0) {
+		if (isInOrder(prefix)) {
+			System.out.println(prefix);
+		}
+	} else {
+		for (int i = 0; i < numChars; i++) {
+			char c = ithLetter(i);
+			printSortedStrings(remaining - 1, prefix + c);
+		}
+	}
+}
+
+boolean isInOrder(String s) {
+	for (int i = 1; i < s.length(); i++) {
+		int prev = ithLetter(s.charAt(i - 1));
+		int curr = ithLetter(s.charAt(i));
+		if (prev > curr) {
+			return false;
+		}
+	}
+	return true;
+}
+
+char ithLetter(int i) {
+	return (char) (((int) 'a') + i);
+}
 
 
 
