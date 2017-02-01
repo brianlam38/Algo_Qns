@@ -360,7 +360,9 @@ int sumDigits(int n) {
 	}
 	return sum;
 }
-// O(1)
+// O(logn).
+// The runtime will be the number of digits in the number. A number with D digits can have a
+// value up to 10^D. If n = 10^D, then D = logn. Therefore, the runtime = O(logn).s
 ------------------------------------------------------------------------------------
 // 11. The following code prints all strings of length k where the characters are in sorted order.
 //     It does this by generating all strings of length k and then checking if each is sorted.
@@ -371,11 +373,12 @@ void printSortedStrings(int remaining) {
 }
 
 void printSortedStrings(int remaining, String prefix) {
-	if (remaining == 0) {
+	if (remaining == 0) {	// no chars left in string
 		if (isInOrder(prefix)) {
-			System.out.println(prefix);
+			System.out.println(prefix);	// print string if sorted
 		}
-	} else {
+	} else {	// generate each string by iterating through 26 letters of alphabet
+				// 
 		for (int i = 0; i < numChars; i++) {
 			char c = ithLetter(i);
 			printSortedStrings(remaining - 1, prefix + c);
@@ -383,7 +386,7 @@ void printSortedStrings(int remaining, String prefix) {
 	}
 }
 
-boolean isInOrder(String s) {
+boolean isInOrder(String s) {	// check if string is sorted
 	for (int i = 1; i < s.length(); i++) {
 		int prev = ithLetter(s.charAt(i - 1));
 		int curr = ithLetter(s.charAt(i));
@@ -394,10 +397,32 @@ boolean isInOrder(String s) {
 	return true;
 }
 
-char ithLetter(int i) {
+char ithLetter(int i) {		// facilitates printing letter
 	return (char) (((int) 'a') + i);
 }
+// O(kc^k) runtime. K = length of the string. C = number of chars in the alphabet
+// O(c^k) time to generate each string.
+// O(k) time to check that each string is sorted.
+------------------------------------------------------------------------------------
+// 12. The following code computes the intersection (number of elements in common)
+//	   of two arrays. It assumes that neither array has duplicates. It computes
+//     the intersection by sorting one array (array b) and then iterating through
+//     array a, checking (via. binary search) if each value is in b.
+int intersection(int[] a, int[] b) {
+	mergesort(b);
+	int intersect = 0;
 
+	for (int x : a) {
+		if (binarySearch(b, x) >= 0) {
+			intersect++;
+		}
+	}
+	return intersect;
+}
+// O(bLogb + aLogb)
+// O(bLogb) for sorting array b (mergesort)
+// Then for each element in a, we do a binary search in O(logb) time,
+// therefore taking O(aLogb) time.
 
 
 
