@@ -36,7 +36,6 @@ int main(int argc, char *argv[]) {
 	return EXIT_SUCCESS;
 }
 
-/*
 // Optimised solution: Calculate value of D
 // Optimised from O(N^4) -> O(N^3)
 int main(int argc, char *argv[]) {
@@ -53,7 +52,9 @@ int main(int argc, char *argv[]) {
 	}
 	return EXIT_SUCCESS;
 }
-*/
+
+-------------------------------------------------------------------------------------------
+
 // #############################
 // B.U.D OPTIMISATION TECHNIQUES
 // PART 3: Duplicated Work
@@ -61,7 +62,49 @@ int main(int argc, char *argv[]) {
 
 // Using the same problem and brute force algorithm as above, look for DUPLICATED WORK this time.
 
-// Duplicated work: Finding an a+b pair, then finding a c+d pair that matches.
+// Duplicated work: Computing an (a,b) pair and then computing all (c,d) pairs for each (a,b).
+// 					We can just compute all (c,d) pairs once. Each time we have an (a,b) pair, we can simply
+//					find the matching (c,d) pair in the list.
+//					The (c,d) pairs can be inserted into a Hash Table
+
+// Suggested optimised solution = O(N^2)
+int main(int argc, char *argv[]) {
+	int n = 1000;
+	// Generate (c,d) pairs + insert into HT
+	for c from 1 to n
+		for d from 1 to n
+			result = c^3 + d^3
+			append (c,d) to list at value map[result]
+	// Using HT, map computed (a,b) pairs to corresponding (c,d) pairs
+	for a from 1 to n
+		for b from 1 to n
+			result = a^3 + b^3
+			list = map.get(result)
+			for each pair in list
+				print a, b, pair
+
+	return EXIT_SUCCESS;
+}
+
+// Best optmised solution = O(N^2)
+// Once we have the map of all (c,d) pairs, we can just use that directly.
+// We don't need to generate the (a,b) pairs, they will already be in the map.
+int main(int argc, char *argv[]) {
+	int n = 1000;
+	// Generate (c,d) pairs + insert into HT
+	for c from 1 to n
+		for d from 1 to n
+			result = c^3 + d^3;
+		append (c,d) to list at value map[result];
+	//
+	for each result, list in map
+		for each pair1 in list
+			for each pair2 in list
+				print pair1, pair2
+
+	return EXIT_SUCCESS;
+}
+
 
 
 
