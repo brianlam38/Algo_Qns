@@ -34,7 +34,7 @@ void intPairs(int *a, int k) {
 	}
 }
 
-// Optimized solution
+// A slightly more optimized solution
 void intPairs(int *a, int k) {
 	// Sort the array = O(nlogn)
 	mergeSort(int *a);
@@ -57,7 +57,7 @@ void intPairs(int *a, int k) {
 // 1. Operate on an unsorted array using a HASH TABLE
 //    Put your array into a Hash Table.
 //	  To see if x+k or x-k exists in the array, simply look it up in the Hash Table O(N)
-	  i.e. if((a[i] + k) || (a[i] - k)) count++;
+	  i.e. for each i, if((a[i] + k) || (a[i] - k)) count++;
 	  // if x+k or x-k is TRUE, increment count
 // 2. Binary search to find the "other side" of the pair O(nLogn)
 
