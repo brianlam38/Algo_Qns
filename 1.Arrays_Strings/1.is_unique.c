@@ -3,9 +3,14 @@
 //			 characters. What if you cannot use additional data structures?
 // ########################################################################
 
-// Extra Notes:
-// Difference between ASCII / Unicode string
-// 
+// Summary: 3 solutions (slowest -> fastest)
+// 1. For each char, iterate through string to check for duplicates
+// 2. Sort string. Iterate through string. If curr = prev, duplicates exist
+// 3. Create array of boolean values (representing alphabet set in ASCII).
+//    Iterate through string, setting TRUE for equivalent index in boolean array.
+//	  If TRUE is encountered again, duplicates exist.
+
+
 
 #include <stdio.h>
 #include <stdlib.h>
