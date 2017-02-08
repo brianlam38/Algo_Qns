@@ -9,7 +9,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 #include <string.h>
 
 #define TRUE 0
@@ -32,10 +31,10 @@ int main(int argc, char *argv[]) {
 	return EXIT_SUCCESS;
 }
 
-/*
+// ###################################
 // METHOD 1 | O(n^2) time | O(1) space
-// For each char, iterate through the string.
-// If current char = iteration char, the string will have a duplicate
+// ###################################
+// 1. For each char, iterate through the string to check duplicates
 int duplicateStr(char *string) {
 	for (int i = 0; string[i] != '\0'; i++) {
 		// printf("Testing for %c\n", string[i]);
@@ -48,22 +47,13 @@ int duplicateStr(char *string) {
 	}
 	return 0;
 }
-*/
 
-/*
-// METHOD 2 | O(nlogn) time | O(x) space
-// 1. Sort string
-// 2. Iterate through string. If curr = prev, then duplicate exists.
-int duplicateStrBetter(char *string) {
-	mergeSort(string);
-
-	return 0;
-}
-*/
-
-// METHOD 3 | O(n) time | O(1) space
+// #################################
+// METHOD 2 | O(n) time | O(1) space	- MOST EFFICIENT
+// #################################
 // 1. Create an array of boolean values. T/F indicates if char exists in string
 // 2. Iterate through string to see if char occurs twice.
+
 int duplicateStrBetter(char *string) {
 	if (stringLen(string) > 128) return FALSE;
 
@@ -92,6 +82,21 @@ int stringLen(char *string) {
 	}
 	return count;
 }
+
+/*
+// #####################################
+// METHOD 3 | O(nlogn) time | O(x) space
+// #####################################
+// 1. Sort string
+// 2. Iterate through string. If curr = prev, then duplicate exists.
+
+int duplicateStrBetter(char *string) {
+	mergeSort(string);
+
+	return 0;
+}
+*/
+
 
 
 
