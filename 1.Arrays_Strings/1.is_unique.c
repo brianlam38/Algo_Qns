@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 	// For each char, iterate through the string.
 	// If current char = iteration char, the string will have a duplicate
 
-	char string[] = "helowsmynaibr";
+	char string[] = "abcdefghijklmnopqrstuvwxyz";
 
 	if (duplicateStr(string)) {
 		printf("Duplicate");
