@@ -3,19 +3,27 @@
 //			 characters. What if you cannot use additional data structures?
 // ########################################################################
 
+// Extra Notes:
+// Difference between ASCII / Unicode string
+// 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
 
-int duplicateStr(char *string);
-// int duplicateStrBetter(char *string);
+#define TRUE 0
+#define FALSE 1
+
+// int duplicateStr(char *string);
+int duplicateStrBetter(char *string);
+int stringLen(char *string);
 
 int main(int argc, char *argv[]) {
 
-	char string[] = "abcdefghijklmnopqrstuvwxyzZASD";	// declaring string literal
+	char string[] = "abcdefghijZklmnopqrstuvwxyzZASD";	// declaring string literal
 														// contains implicit null term
-	if (duplicateStr(string)) {
+	if (duplicateStrBetter(string)) {
 		printf("Duplicate");
 	} else {
 		printf("No duplicate");
@@ -24,7 +32,8 @@ int main(int argc, char *argv[]) {
 	return EXIT_SUCCESS;
 }
 
-// LESS EFFICIENT METHOD O(n^2)
+/*
+// METHOD 1 | O(n^2) time | O(1) space
 // For each char, iterate through the string.
 // If current char = iteration char, the string will have a duplicate
 int duplicateStr(char *string) {
@@ -39,14 +48,51 @@ int duplicateStr(char *string) {
 	}
 	return 0;
 }
+*/
+
 /*
-// MORE EFFICIENT METHOD O(nLogn) + O(n) = O(nlogn)
+// METHOD 2 | O(nlogn) time | O(x) space
 // 1. Sort string
 // 2. Iterate through string. If curr = prev, then duplicate exists.
 int duplicateStrBetter(char *string) {
 	mergeSort(string);
+
+	return 0;
 }
 */
+
+// METHOD 3 | O(n) time | O(1) space
+// 1. Create an array of boolean values. T/F indicates if char exists in string
+// 2. Iterate through string to see if char occurs twice.
+int duplicateStrBetter(char *string) {
+	if (stringLen(string) > 128) return FALSE;
+
+	// Create char set + initialise all to FALSE
+	int charSet[128];
+	for (int i = 0; i < 128; i++) {
+		charSet[i] = FALSE;
+	}
+
+	// Iterate through string to count # of characters repeated.
+	for (int j = 0; j < stringLen(string); j++) {
+		int val = string[j];
+		if (charSet[val] == TRUE) {
+			return FALSE;
+		}
+	}
+
+	// No duplicate found, return TRUE.
+	return TRUE;
+}
+
+int stringLen(char *string) {
+	int count = 0;
+	for (int i = 0; string[i] != '\0'; i++) {
+		count++;
+	}
+	return count;
+}
+
 
 
 
