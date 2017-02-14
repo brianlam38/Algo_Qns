@@ -8,7 +8,7 @@
 // 2. Sort string. Iterate through string. If curr = prev, duplicates exist
 // 3. Create array of boolean values (representing alphabet set in ASCII).
 //    Iterate through string, setting TRUE for equivalent index in boolean array.
-//	  If TRUE is encountered again, duplicates exist.
+//	  If TRUE is encountered again, duplicates exist
 
 
 
